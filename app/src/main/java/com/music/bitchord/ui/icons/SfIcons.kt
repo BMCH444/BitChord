@@ -131,7 +131,7 @@ object SfIcons {
     val Animation: ImageVector by lazy { bold(SfSymbols.Monochrome.SFFigureWalkMotion) }
     val Appearance: ImageVector by lazy { bold(SfSymbols.Monochrome.SFPaintbrushPointed) }
     val Apps: ImageVector by lazy { bold(SfSymbols.Monochrome.SFSquareGrid2x2) }
-    val ArrowBack: ImageVector by lazy { bold(SfSymbols.Monochrome.SFChevronBackward) }
+    val ArrowBack: ImageVector by lazy { bold(SfSymbols.Monochrome.SFChevronBackward, autoMirror = true) }
     val AutoAwesome: ImageVector by lazy { bold(SfSymbols.Monochrome.SFSparkles) }
     val BarChart: ImageVector by lazy { bold(SfSymbols.Monochrome.SFChartBar) }
     val Bluetooth: ImageVector by lazy { bold(SfSymbols.Monochrome.SFHeadphones) }
@@ -140,7 +140,7 @@ object SfIcons {
     val Brightness: ImageVector by lazy { bold(SfSymbols.Monochrome.SFSunMax) }
     val Cached: ImageVector by lazy { bold(SfSymbols.Monochrome.SFArrowTrianglehead2Clockwise) }
     val Check: ImageVector by lazy { bold(SfSymbols.Monochrome.SFCheckmark) }
-    val ChevronRight: ImageVector by lazy { bold(SfSymbols.Monochrome.SFChevronRight) }
+    val ChevronRight: ImageVector by lazy { bold(SfSymbols.Monochrome.SFChevronRight, autoMirror = true) }
     val Clock: ImageVector by lazy { bold(SfSymbols.Monochrome.SFClock) }
     val Cloud: ImageVector by lazy { bold(SfSymbols.Monochrome.SFIcloud) }
     val CloudDone: ImageVector by lazy { bold(SfSymbols.Monochrome.SFCheckmarkIcloud) }
@@ -276,13 +276,13 @@ object SfIcons {
     }
 
     /** Grown by half the stroke on every side, which the added line reaches into. */
-    private fun bold(regular: ImageVector): ImageVector {
+    private fun bold(regular: ImageVector, autoMirror: Boolean = regular.autoMirror): ImageVector {
         val pad = BOLD_STROKE / 2f
         return canvas(
             name = regular.name + ".bold",
             width = regular.viewportWidth + pad * 2f,
             height = regular.viewportHeight + pad * 2f,
-            autoMirror = regular.autoMirror,
+            autoMirror = autoMirror,
         ) {
             addGroup(translationX = pad, translationY = pad)
             copyInto(this, regular.root)
